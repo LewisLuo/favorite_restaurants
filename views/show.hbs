@@ -3,7 +3,10 @@
   <a href="/"><button type="button" class="btn btn-info">顯示全部</button></a>
   {{#if restaurant_id}}
   <a href="/restaurants/{{restaurant._id}}/edit"><button type="button" class="btn btn-warning">修改</button></a>
-  <button type="button" class="btn btn-danger">刪除</button>
+  <form action="/restaurants/{{restaurant._id}}/delete" method="post" style="display: inline"
+    onsubmit="return confirm('確定要刪除此筆資料嗎？')">
+    <button type="submit" class="btn btn-danger">刪除</button>
+  </form>
   {{/if}}
 </div>
 

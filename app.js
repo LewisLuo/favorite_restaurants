@@ -35,19 +35,7 @@ app.get('/restaurants/new', (req, res) => {
 })
 
 app.post('/restaurants', (req, res) => {
-  const body = req.body
-
-  return Restaurant.create({
-    name: body.name,
-    name_en: body.name_en,
-    category: body.category,
-    image: body.image,
-    location: body.location,
-    phone: body.phone,
-    google_map: body.google_map,
-    rating: body.rating,
-    description: body.description
-  })
+  return Restaurant.create(req.body)
     .then(() => res.redirect('/'))
     .catch(error => { console.log('Error from mongoose-create') })
 })
@@ -92,19 +80,10 @@ app.get('/restaurants/:restaurant_id/edit', (req, res) => {
 
 app.post('/restaurants/:restaurant_id/edit', (req, res) => {
   const restaurant_id = req.params.restaurant_id
-  const body = req.body
 
   return Restaurant.findById(restaurant_id)
     .then((restaurant) => {
-      restaurant.name = body.name
-      restaurant.name_en = body.name_en
-      restaurant.category = body.category
-      restaurant.image = body.image
-      restaurant.location = body.location
-      restaurant.phone = body.phone
-      restaurant.google_map = body.google_map
-      restaurant.rating = body.rating
-      restaurant.description = body.description
+      restaurant = Object.assign(restaurant, req.body)
       return restaurant.save()
     })
     .then(() => res.redirect(`/restaurants/${restaurant_id}`))
@@ -112,6 +91,14 @@ app.post('/restaurants/:restaurant_id/edit', (req, res) => {
 })
 
 //刪除restaurant
+app.post('/restaurants/:restaurant_id/delete', (req, res) => {
+  const restaurant_id = req.params.restaurant_id
+
+  return Restaurant.findById(restaurant_id)
+    .then((restaurant) => { restaurant.remove() })
+    .then(() => res.redirect('/'))
+    .catch(error => { console.log('Error from mongoose-delete') })
+})
 
 app.listen(port, () => {
   console.log(`Express is running on http://localhost:${port}`)
