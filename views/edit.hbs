@@ -1,0 +1,24 @@
+<div class="container mt-4">
+  <form action="/restaurants/{{restaurant._id}}/edit" method="POST">
+    <span>餐廳中文名稱：</span><input type="text" placeholder="輸入中文名" name="name" value="{{restaurant.name}}">
+    <hr>
+    <span>餐廳英文名稱：</span><input type="text" placeholder="輸入英文名" name="name_en" value="{{restaurant.name_en}}">
+    <hr>
+    <span>用餐類型：</span><input type="text" placeholder="輸入類型" name="category" value="{{restaurant.category}}">
+    <hr>
+    <span>照片網址：</span><input type="text" placeholder="輸入網址" name="image" value="{{restaurant.image}}">
+    <hr>
+    <span>位置：</span><input type="text" placeholder="輸入位置" name="location" value="{{restaurant.location}}">
+    <hr>
+    <span>電話：</span><input type="text" placeholder="輸入電話" name="phone" value="{{restaurant.phone}}">
+    <hr>
+    <span>Google地圖：</span><input type="text" placeholder="輸入網址" name="google_map" value="{{restaurant.google_map}}">
+    <hr>
+    <span>評價：</span><input type="text" placeholder="輸入數字" name="rating" value="{{restaurant.rating}}">
+    <hr>
+    <span>詳細內容：</span><input type="text" placeholder="輸入詳細內容" name="description" value="{{restaurant.description}}">
+    <hr>
+    <button type="submit" class="btn btn-primary">送出</button>
+    <a href="/" role="button" class="btn btn-primary">返回</a>
+  </form>
+</div>

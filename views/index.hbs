@@ -28,8 +28,9 @@
       <div class="card-columns">
 
         {{#each restaurants}}
-        <a href="/restaurants/{{this._id}}" class="text-secondary">
-          <div class="card mb-3">
+        <div class="card mb-3">
+          <a href="/restaurants/{{this._id}}" class="text-secondary">
+
             <img class="card-img-top" src="{{this.image}}" alt="{{this.name}}">
             <div class="card-body p-3">
               <h6 class="card-title mb-1">{{this.name}}</h6>
@@ -42,10 +43,15 @@
                 {{this.rating}}
                 <i class="fas fa-star fa-xs"></i>
               </span>
-
             </div>
+          </a>
+
+          <div class="card-footer d-flex justify-content-end">
+            <a href="/restaurants/{{this._id}}/edit"><button type="button" class="btn btn-warning mr-2">修改</button></a>
+            <button type="button" class="btn btn-danger">刪除</button>
           </div>
-        </a>
+
+        </div>
         {{/each}}
 
       </div>

@@ -26,7 +26,7 @@ app.get('/', (req, res) => {
   Restaurant.find()
     .lean()
     .then((restaurants) => res.render('index', { restaurants: restaurants }))
-    .catch(error => { console.log('Error from mongoose-1') })
+    .catch(error => { console.log('Error from mongoose-index') })
 })
 
 //新增restaurant
@@ -58,8 +58,8 @@ app.get('/restaurants/:restaurant_id', (req, res) => {
 
   return Restaurant.findById(restaurant_id)
     .lean()
-    .then((restaurant) => res.render('show', { restaurant: restaurant }))
-    .catch(error => { console.log('Error from mongoose-2') })
+    .then((restaurant) => res.render('show', { restaurant, restaurant_id }))
+    .catch(error => { console.log('Error from mongoose-show') })
 })
 
 //搜尋restaurants
@@ -77,12 +77,41 @@ app.get('/search', (req, res) => {
         res.render('index', { restaurants: searchedRestaurants, keyword })
       }
     })
-    .catch(error => { console.log('Error from mongoose-3') })
+    .catch(error => { console.log('Error from mongoose-search') })
 })
 
-//新增restaurant
+//編輯restaurant
+app.get('/restaurants/:restaurant_id/edit', (req, res) => {
+  const restaurant_id = req.params.restaurant_id
 
+  return Restaurant.findById(restaurant_id)
+    .lean()
+    .then((restaurant) => res.render('edit', { restaurant }))
+    .catch(error => { console.log('Error from mongoose-edit-1') })
+})
 
+app.post('/restaurants/:restaurant_id/edit', (req, res) => {
+  const restaurant_id = req.params.restaurant_id
+  const body = req.body
+
+  return Restaurant.findById(restaurant_id)
+    .then((restaurant) => {
+      restaurant.name = body.name
+      restaurant.name_en = body.name_en
+      restaurant.category = body.category
+      restaurant.image = body.image
+      restaurant.location = body.location
+      restaurant.phone = body.phone
+      restaurant.google_map = body.google_map
+      restaurant.rating = body.rating
+      restaurant.description = body.description
+      return restaurant.save()
+    })
+    .then(() => res.redirect(`/restaurants/${restaurant_id}`))
+    .catch(error => { console.log('Error from mongoose-edit-2') })
+})
+
+//刪除restaurant
 
 app.listen(port, () => {
   console.log(`Express is running on http://localhost:${port}`)
