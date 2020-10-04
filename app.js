@@ -26,20 +26,43 @@ app.get('/', (req, res) => {
   Restaurant.find()
     .lean()
     .then((restaurants) => res.render('index', { restaurants: restaurants }))
-    .catch(error => { console.log('Error from mongoose') })
+    .catch(error => { console.log('Error from mongoose-1') })
 })
 
-//觀看detail
+//新增restaurant
+app.get('/restaurants/new', (req, res) => {
+  res.render('new')
+})
+
+app.post('/restaurants', (req, res) => {
+  const body = req.body
+
+  return Restaurant.create({
+    name: body.name,
+    name_en: body.name_en,
+    category: body.category,
+    image: body.image,
+    location: body.location,
+    phone: body.phone,
+    google_map: body.google_map,
+    rating: body.rating,
+    description: body.description
+  })
+    .then(() => res.redirect('/'))
+    .catch(error => { console.log('Error from mongoose-create') })
+})
+
+//觀看restaurant內容
 app.get('/restaurants/:restaurant_id', (req, res) => {
   const restaurant_id = req.params.restaurant_id
 
-  return Restaurant.find({ id: restaurant_id })
+  return Restaurant.findById(restaurant_id)
     .lean()
-    .then((restaurant) => res.render('show', { restaurant: restaurant[0] }))
-    .catch(error => { console.log('Error from mongoose') })
+    .then((restaurant) => res.render('show', { restaurant: restaurant }))
+    .catch(error => { console.log('Error from mongoose-2') })
 })
 
-//搜尋
+//搜尋restaurants
 app.get('/search', (req, res) => {
   const keyword = req.query.keyword
   const modifiedKeyword = req.query.keyword.toLowerCase().trim()
@@ -51,16 +74,15 @@ app.get('/search', (req, res) => {
       if (searchedRestaurants.length === 0) {
         res.render('search_fail', { keyword })
       } else {
-        console.log(searchedRestaurants)
         res.render('index', { restaurants: searchedRestaurants, keyword })
       }
     })
-    .catch(error => { console.log('Error from mongoose') })
-
-
-  // const searchedRestaurants = restaurantList.filter((restaurant) => restaurant.name.toLowerCase().includes(req.query.keyword.toLowerCase().trim()) || restaurant.name_en.toLowerCase().includes(req.query.keyword.toLowerCase().trim()))
-
+    .catch(error => { console.log('Error from mongoose-3') })
 })
+
+//新增restaurant
+
+
 
 app.listen(port, () => {
   console.log(`Express is running on http://localhost:${port}`)
