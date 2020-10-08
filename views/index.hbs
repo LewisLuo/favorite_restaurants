@@ -46,20 +46,12 @@
             </div>
           </a>
 
-          {{#if deleteCheck}}
-          <div class="card-footer d-flex justify-content-end">
-            <form action="" method="post"><button type="submit" class="btn btn-danger">確定</button></form>
-            <button type="button" class="btn btn-primary">取消</button>
-          </div>
-          {{else}}
           <div class="card-footer d-flex justify-content-end">
             <a href="./restaurants/{{this._id}}/edit"><button type="button" class="btn btn-warning mr-2">修改</button></a>
             <form action="./restaurants/{{this._id}}/delete" method="post" onsubmit="return confirm('確定要刪除此筆資料嗎？')">
               <button type="submit" class="btn btn-danger">刪除</button>
             </form>
           </div>
-          {{/if}}
-
 
         </div>
         {{/each}}
