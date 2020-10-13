@@ -16,18 +16,37 @@
   </div>
 </div>
 
-<div class="container">
-  <a href="../restaurants/new"><button type="button" class="btn btn-info">新增餐廳</button></a>
-  <a href="/"><button type="button" class="btn btn-info">顯示全部</button></a>
+<div class="container d-flex justify-content-between ">
+  <div>
+    <a href="../restaurants/new"><button type="button" class="btn btn-info">新增餐廳</button></a>
+    <a href="/"><button type="button" class="btn btn-info">顯示全部</button></a>
+  </div>
+
+  <!-- Dropdowns -->
+  <div>
+    <div class="dropdown">
+      <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
+        {{orderName}}
+      </a>
+      <form action="/" method="POST">
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+          <a class="dropdown-item" href="?keyword={{keyword}}&sort=name">餐廳名 (A -> Z)</a>
+          <a class="dropdown-item" href="?keyword={{keyword}}&sort=name-r">餐廳名 (Z -> A)</a>
+          <a class="dropdown-item" href="?keyword={{keyword}}&sort=category">類別</a>
+          <a class="dropdown-item" href="?keyword={{keyword}}&sort=location">地區</a>
+        </div>
+      </form>
+    </div>
+  </div>
 </div>
 
 <!-- restaurant list -->
 <div class="container mt-5">
   <div class="row">
-    <div class="col-md-10 col-12 mx-auto">
-      <div class="card-columns">
-
-        {{#each restaurants}}
+    <div class="card-columns d-flex row wrap justify-content-center">
+      {{#each restaurants}}
+      <div class="col-3">
         <div class="card mb-3">
           <a href="./restaurants/{{this._id}}" class="text-secondary">
 
@@ -53,11 +72,10 @@
               <button type="submit" class="btn btn-danger">刪除</button>
             </form>
           </div>
-
         </div>
-        {{/each}}
-
       </div>
+      {{/each}}
+
     </div>
   </div>
 </div>
