@@ -48,7 +48,8 @@
 
           <div class="card-footer d-flex justify-content-end">
             <a href="./restaurants/{{this._id}}/edit"><button type="button" class="btn btn-warning mr-2">修改</button></a>
-            <form action="./restaurants/{{this._id}}/delete" method="post" onsubmit="return confirm('確定要刪除此筆資料嗎？')">
+            <form action="./restaurants/{{this._id}}?_method=DELETE" method="post"
+              onsubmit="return confirm('確定要刪除此筆資料嗎？')">
               <button type="submit" class="btn btn-danger">刪除</button>
             </form>
           </div>

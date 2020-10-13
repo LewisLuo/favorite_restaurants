@@ -1,5 +1,5 @@
 <div class="container mt-4">
-  <form action="/restaurants/{{restaurant._id}}/edit" method="POST">
+  <form action="/restaurants/{{restaurant._id}}?_method=PUT" method="POST">
     <span>餐廳中文名稱：</span><input type="text" placeholder="輸入中文名" name="name" value="{{restaurant.name}}">
     <hr>
     <span>餐廳英文名稱：</span><input type="text" placeholder="輸入英文名" name="name_en" value="{{restaurant.name_en}}">
