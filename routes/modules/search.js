@@ -36,18 +36,28 @@ router.get('/', (req, res) => {
       orderName = '排序'
   }
 
-  return Restaurant.find()
-    .lean()
-    .sort({ [sortFilter]: [order] })
-    .then((restaurants) => {
-      const searchedRestaurants = restaurants.filter((restaurant) => restaurant.name.toLowerCase().includes(modifiedKeyword) || restaurant.name_en.toLowerCase().includes(modifiedKeyword))
-      if (searchedRestaurants.length === 0) {
-        res.render('search_fail', { keyword, orderName })
-      } else {
-        res.render('index', { restaurants: searchedRestaurants, keyword, orderName })
-      }
-    })
-    .catch(error => { console.log('Error from mongoose-search') })
+  if (!modifiedKeyword) {
+    const alertHTML = 'show alert'
+    Restaurant.find()
+      .lean()
+      .sort({ [sortFilter]: [order] })
+      .then((restaurants) => res.render('index', { restaurants: restaurants, orderName, alertHTML }))
+      .catch(error => { console.log('Error from mongoose-index') })
+  } else {
+    return Restaurant.find()
+      .lean()
+      .sort({ [sortFilter]: [order] })
+      .then((restaurants) => {
+        const searchedRestaurants = restaurants.filter((restaurant) => restaurant.name.toLowerCase().includes(modifiedKeyword) || restaurant.name_en.toLowerCase().includes(modifiedKeyword))
+        if (searchedRestaurants.length === 0) {
+          res.render('search_fail', { keyword, orderName })
+        } else {
+          res.render('index', { restaurants: searchedRestaurants, keyword, orderName })
+        }
+      })
+      .catch(error => { console.log('Error from mongoose-search') })
+  }
+
 })
 
 module.exports = router
