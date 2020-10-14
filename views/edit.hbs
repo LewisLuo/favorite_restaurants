@@ -1,5 +1,5 @@
 <div class="container mt-4">
-  <form action="/restaurants/{{restaurant._id}}?_method=PUT" method="POST">
+  <form action="/restaurants/{{restaurant._id}}/edit/preview" method="POST">
     <span>餐廳中文名稱：</span><input type="text" placeholder="輸入中文名" name="name" value="{{restaurant.name}}">
     <hr>
     <span>餐廳英文名稱：</span><input type="text" placeholder="輸入英文名" name="name_en" value="{{restaurant.name_en}}">
@@ -18,8 +18,10 @@
     <hr>
     <span>詳細內容：</span><input type="text" placeholder="輸入詳細內容" name="description" value="{{restaurant.description}}">
     <hr>
+    <input type="hidden" name="_id" value="{{restaurant._id}}">
 
-    <button type="submit" class="btn btn-warning" name="preview" value="preview">預覽</button>
-    <button type="submit" class="btn btn-primary">送出</button>
-    <a href="/" role="button" class="btn btn-light">回首頁</a> </form>
+    <button type="submit" class="btn btn-warning">預覽</button>
+    <a href="/restaurants/{{restaurant._id}}" role="button" class="btn btn-secondary">回詳細頁面</a>
+    <a href="/" role="button" class="btn btn-light">回首頁</a>
+  </form>
 </div>

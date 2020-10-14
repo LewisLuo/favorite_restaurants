@@ -1,7 +1,19 @@
-<div class="container mt-5">
-  <a href="/"><button type="button" class="btn btn-light">回首頁</button></a>
-  <a href="#" onclick="history.go(-1)"><button type="button" class="btn btn-warning">返回</button></a>
-</div>
+<form action="/restaurants" method="POST">
+  <input type="hidden" name="name" value="{{previewInfo.name}}">
+  <input type="hidden" name="name_en" value="{{previewInfo.name_en}}">
+  <input type="hidden" name="category" value="{{previewInfo.category}}">
+  <input type="hidden" name="image" value="{{previewInfo.image}}">
+  <input type="hidden" name="location" value="{{previewInfo.location}}">
+  <input type="hidden" name="phone" value="{{previewInfo.phone}}">
+  <input type="hidden" name="google_map" value="{{previewInfo.google_map}}">
+  <input type="hidden" name="rating" value="{{previewInfo.rating}}">
+  <input type="hidden" name="description" value="{{previewInfo.description}}">
+  <div class="container mt-5">
+    <a href="/"><button type="button" class="btn btn-light">回首頁</button></a>
+    <a href="#" onclick="history.go(-1)"><button type="button" class="btn btn-warning">返回新增</button></a>
+    <button type="submit" class="btn btn-primary" onclick="return confirm('確定新增此筆資料？')">送出</button>
+  </div>
+</form>
 
 <h1 class="mb-1 restaurant-show-title">{{previewInfo.name}}</h1>
 <div class="container">

@@ -20,7 +20,7 @@
 6. Body-parser v1.19.0
 7. Method-override v3.0.0
 8. Mongoose v5.10.7
-9. Bootstrap v4.5.2
+9. Bootstrap v4.5.2 (note: v4.5.3以上會導致下拉清單無法顯示)
 10. Font Awesome Free v5.14.0
 
 # 安裝流程

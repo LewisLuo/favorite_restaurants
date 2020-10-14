@@ -1,26 +1,25 @@
 <div class="container mt-4">
-  <form action="/restaurants" method="POST">
-    <span>餐廳中文名稱：</span><input type="text" placeholder="輸入中文名" name="name">
+  <form action="/restaurants/new/preview" method="POST" id="submit-new">
+    <span>餐廳中文名稱：</span><input type="text" placeholder="輸入中文名" name="name" required>
     <hr>
-    <span>餐廳英文名稱：</span><input type="text" placeholder="輸入英文名" name="name_en">
+    <span>餐廳英文名稱：</span><input type="text" placeholder="輸入英文名" name="name_en" required>
     <hr>
-    <span>用餐類型：</span><input type="text" placeholder="輸入類型" name="category">
+    <span>用餐類型：</span><input type="text" placeholder="輸入類型" name="category" required>
     <hr>
     <span>照片網址：</span><input type="text" placeholder="輸入網址" name="image">
     <hr>
-    <span>位置：</span><input type="text" placeholder="輸入位置" name="location">
+    <span>位置：</span><input type="text" placeholder="輸入位置" name="location" required>
     <hr>
-    <span>電話：</span><input type="text" placeholder="輸入電話" name="phone">
+    <span>電話：</span><input type="text" placeholder="輸入電話" name="phone" required>
     <hr>
-    <span>Google地圖：</span><input type="text" placeholder="輸入網址" name="google_map">
+    <span>Google地圖：</span><input type="text" placeholder="輸入網址" name="google_map" required>
     <hr>
-    <span>評價：</span><input type="text" placeholder="輸入數字" name="rating">
+    <span>評價：</span><input type="text" placeholder="輸入數字" name="rating" required>
     <hr>
-    <span>詳細內容：</span><input type="text" placeholder="輸入詳細內容" name="description">
+    <span>詳細內容：</span><input type="text" placeholder="輸入詳細內容" name="description" required>
     <hr>
 
-    <button type="submit" class="btn btn-warning" name="preview" value="preview">預覽</button>
-    <button type="submit" class="btn btn-primary">送出</button>
+    <button type="submit" class="btn btn-warning">預覽</button>
     <a href="/" role="button" class="btn btn-light">回首頁</a>
   </form>
 </div>
