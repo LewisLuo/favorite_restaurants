@@ -9,9 +9,14 @@ router.get('/new', (req, res) => {
 })
 
 router.post('/', (req, res) => {
-  return Restaurant.create(req.body)
-    .then(() => res.redirect('/'))
-    .catch(error => { console.log('Error from mongoose-create') })
+  if (req.body.preview) {
+    const previewInfo = req.body
+    res.render('preview', { previewInfo })
+  } else {
+    return Restaurant.create(req.body)
+      .then(() => res.redirect('/'))
+      .catch(error => { console.log('Error from mongoose-create') })
+  }
 })
 
 //觀看restaurant內容
@@ -35,15 +40,21 @@ router.get('/:restaurant_id/edit', (req, res) => {
 })
 
 router.put('/:restaurant_id', (req, res) => {
-  const restaurant_id = req.params.restaurant_id
+  if (req.body.preview) {
+    const previewInfo = req.body
+    res.render('preview', { previewInfo })
+  } else {
 
-  return Restaurant.findById(restaurant_id)
-    .then((restaurant) => {
-      restaurant = Object.assign(restaurant, req.body)
-      return restaurant.save()
-    })
-    .then(() => res.redirect(`/restaurants/${restaurant_id}`))
-    .catch(error => { console.log('Error from mongoose-edit-2') })
+    const restaurant_id = req.params.restaurant_id
+
+    return Restaurant.findById(restaurant_id)
+      .then((restaurant) => {
+        restaurant = Object.assign(restaurant, req.body)
+        return restaurant.save()
+      })
+      .then(() => res.redirect(`/restaurants/${restaurant_id}`))
+      .catch(error => { console.log('Error from mongoose-edit-2') })
+  }
 })
 
 //刪除restaurant

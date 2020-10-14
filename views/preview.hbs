@@ -1,15 +1,9 @@
 <div class="container mt-5">
   <a href="/"><button type="button" class="btn btn-light">回首頁</button></a>
-  {{#if restaurant_id}}
-  <a href="/restaurants/{{restaurant._id}}/edit"><button type="button" class="btn btn-warning">修改</button></a>
-  <form action="/restaurants/{{restaurant._id}}?_method=DELETE" method="post" style="display: inline"
-    onsubmit="return confirm('確定要刪除此筆資料嗎？')">
-    <button type="submit" class="btn btn-danger">刪除</button>
-  </form>
-  {{/if}}
+  <a href="#" onclick="history.go(-1)"><button type="button" class="btn btn-warning">返回</button></a>
 </div>
 
-<h1 class="mb-1 restaurant-show-title">{{restaurant.name}}</h1>
+<h1 class="mb-1 restaurant-show-title">{{previewInfo.name}}</h1>
 <div class="container">
   <div class="row">
     <div class="col-12 col-md-10 mx-auto">
@@ -19,7 +13,7 @@
           <i class="fas fa-utensils pr-2 fa-2x"></i>
           類別：
         </span>
-        {{restaurant.category}}
+        {{previewInfo.category}}
       </p>
 
       <p class="mb-1">
@@ -27,8 +21,8 @@
           <i class="fas fa-map-marker-alt pr-2 fa-2x"></i>
           地址：
         </span>
-        {{restaurant.location}}
-        <a href="{{restaurant.google_map}}" class="text-secondary" target="_blank">
+        {{previewInfo.location}}
+        <a href="{{previewInfo.google_map}}" class="text-secondary" target="_blank">
           <i class="fas fa-location-arrow pr-2 fa-2x"></i>
         </a>
       </p>
@@ -38,14 +32,14 @@
           <i class="fas fa-mobile-alt pr-2 fa-2x"></i>
           電話：
         </span>
-        {{restaurant.phone}}
+        {{previewInfo.phone}}
       </p>
 
       <p class="mb-5">
-        {{restaurant.description}}
+        {{previewInfo.description}}
       </p>
 
-      <img class="rounded mx-auto d-block mb-4 w-100" src="{{restaurant.image}}" alt="{{restaurant.name}}"
+      <img class="rounded mx-auto d-block mb-4 w-100" src="{{previewInfo.image}}" alt="{{previewInfo.name}}"
         style="max-width: 600px;">
     </div>
   </div>

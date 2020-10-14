@@ -26,6 +26,7 @@ router.get('/', (req, res) => {
       sortFilter = 'location'
       order = 'asc'
       orderName = '地區'
+      break;
     default:
       sortFilter = '_id'
       order = 'asc'
