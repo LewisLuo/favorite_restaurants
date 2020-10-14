@@ -1,15 +1,20 @@
 const express = require('express')
 const router = express.Router()
+const categories = require('../../restaurant_categories')
 
 const Restaurant = require('../../models/restaurant')
 
 //新增restaurant
 router.get('/new', (req, res) => {
-  res.render('new')
+  res.render('new', { categories })
 })
 
 router.post('/new/preview', (req, res) => {
-  res.render('new_preview', { previewInfo: req.body })
+  const previewInfo = req.body
+  if (previewInfo.category === '請選擇用餐類型') {
+    previewInfo.category = ''
+  }
+  res.render('new_preview', { previewInfo })
 })
 
 router.post('/', (req, res) => {
@@ -34,7 +39,7 @@ router.get('/:restaurant_id/edit', (req, res) => {
 
   return Restaurant.findById(restaurant_id)
     .lean()
-    .then((restaurant) => res.render('edit', { restaurant }))
+    .then((restaurant) => res.render('edit', { restaurant, categories }))
     .catch(error => { console.log('Error from mongoose-edit-1') })
 })
 

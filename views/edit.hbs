@@ -4,7 +4,11 @@
     <hr>
     <span>餐廳英文名稱：</span><input type="text" placeholder="輸入英文名" name="name_en" value="{{restaurant.name_en}}">
     <hr>
-    <span>用餐類型：</span><input type="text" placeholder="輸入類型" name="category" value="{{restaurant.category}}">
+    <span>用餐類型：</span><select type="select" placeholder="輸入類型" name="category" required>
+      {{#each categories}}
+      <option value="{{this}}" {{isMached this ../restaurant.category}}>{{this}}</option>
+      {{/each}}
+    </select>
     <hr>
     <span>照片網址：</span><input type="text" placeholder="輸入網址" name="image" value="{{restaurant.image}}">
     <hr>
