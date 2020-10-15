@@ -25,11 +25,9 @@ router.post('/', (req, res) => {
 
 //觀看restaurant內容
 router.get('/:restaurant_id', (req, res) => {
-  const restaurant_id = req.params.restaurant_id
-
-  return Restaurant.findById(restaurant_id)
+  return Restaurant.findById(req.params.restaurant_id)
     .lean()
-    .then((restaurant) => res.render('show', { restaurant, restaurant_id }))
+    .then((restaurant) => res.render('show', { restaurant }))
     .catch(error => { console.log('Error from mongoose-show') })
 })
 

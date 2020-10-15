@@ -6,7 +6,7 @@
     <hr>
     <span>用餐類型：</span><select type="select" placeholder="輸入類型" name="category" required>
       {{#each categories}}
-      <option value="{{this}}" {{isMached this ../restaurant.category}}>{{this}}</option>
+      <option value="{{this}}" {{isMatched this ../restaurant.category}}>{{this}}</option>
       {{/each}}
     </select>
     <hr>
@@ -26,6 +26,5 @@
 
     <button type="submit" class="btn btn-warning">預覽</button>
     <a href="/restaurants/{{restaurant._id}}" role="button" class="btn btn-secondary">回詳細頁面</a>
-    <a href="/" role="button" class="btn btn-light">回首頁</a>
   </form>
 </div>
