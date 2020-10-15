@@ -9,7 +9,7 @@ const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
 
 // Handelbar helpers
-const isMatched = require('./utils/isMatched')
+require('./utils/isMatched')
 
 // Routers and database
 const routes = require('./routes')
